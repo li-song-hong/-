@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#050816" />
+    <meta name="description" content="星际猎杀号——科技风网页飞机大战" />
+    <title>星际猎杀号 · STAR HUNTER</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <main id="app">
+      <canvas id="gameCanvas" aria-label="飞机大战游戏画布"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
+
+      <section id="menu" class="screen active">
+        <div class="topbar">
+          <div class="brand-mini"><span class="brand-dot"></span>STAR HUNTER</div>
+          <div class="top-actions">
+            <div class="best-score"><small>BEST</small><b id="menuBestScore">0</b></div>
+            <div class="currency"><span>◆</span><b id="menuCoins">0</b></div>
+            <button id="soundBtn" class="icon-btn sound-off" aria-label="声音已关闭，仅显示文字提示" disabled>静音</button>
+          </div>
+        </div>
+
+        <div class="hero">
+          <p class="eyebrow">DEEP SPACE STRIKE FORCE · 2087</p>
+          <h1><span>星际</span>猎杀号</h1>
+          <p class="subtitle">STAR HUNTER <i>//</i> FINAL ASSAULT</p>
+          <div class="signal"><span></span><b>检测到巨型敌对信号</b><span></span></div>
+          <div class="menu-actions">
+            <button id="startBtn" class="primary-btn"><span>开始任务</span><small>STORY MISSION</small></button>
+            <button id="endlessBtn" class="secondary-btn"><span>无尽模式</span><small>ENDLESS COMBAT</small></button>
+          </div>
+          <div class="loadout-panel">
+            <div class="loadout-row">
+              <div class="loadout-label"><span>CREW SIZE</span><b>作战编制</b></div>
+              <div class="mode-list" role="radiogroup" aria-label="选择作战人数">
+                <button class="mode-card selected" data-mode="solo" role="radio" aria-checked="true"><b>单人模式</b><small>独自完成任务</small></button>
+                <button class="mode-card" data-mode="coop" role="radio" aria-checked="false"><b>双人模式</b><small>本地合作 · 共享火力</small></button>
+              </div>
+            </div>
+            <div class="loadout-row ship-row-menu">
+              <div class="loadout-label"><span>SHIP SELECT</span><b>战机选择</b></div>
+              <div class="ship-list" role="radiogroup" aria-label="选择战机">
+                <button class="ship-card selected" data-ship="sentinel" role="radio" aria-checked="true"><i class="ship-icon sentinel"></i><b>哨兵</b><small>均衡型 · 护甲强化</small></button>
+                <button class="ship-card" data-ship="striker" role="radio" aria-checked="false"><i class="ship-icon striker"></i><b>突击者</b><small>火力型 · 连射更快</small></button>
+                <button class="ship-card" data-ship="wraith" role="radio" aria-checked="false"><i class="ship-icon wraith"></i><b>幽灵</b><small>机动型 · 冲刺更强</small></button>
+              </div>
+            </div>
+          </div>
+          <div class="stage-panel">
+            <div class="stage-heading"><span>MISSION SELECT</span><b>选择作战关卡</b><i>难度与奖励依次递增</i></div>
+            <div class="stage-list" role="listbox" aria-label="选择剧情关卡">
+              <button class="stage-card selected" data-stage="recruit" role="option" aria-selected="true">
+                <span class="stage-number">01</span><span class="stage-difficulty easy">简单</span>
+                <b>新兵试炼</b><small>外围航道 · 基础训练</small><em>◆ 80 起</em>
+              </button>
+              <button class="stage-card" data-stage="orbit" role="option" aria-selected="false">
+                <span class="stage-number">02</span><span class="stage-difficulty normal">普通</span>
+                <b>星环突袭</b><small>碎星带 · 交叉火力</small><em>◆ 120 起</em>
+              </button>
+              <button class="stage-card" data-stage="abyss" role="option" aria-selected="false">
+                <span class="stage-number">03</span><span class="stage-difficulty hard">困难</span>
+                <b>深空围剿</b><small>暗物质区 · 精英集群</small><em>◆ 180 起</em>
+              </button>
+              <button class="stage-card" data-stage="extinction" role="option" aria-selected="false">
+                <span class="stage-number">04</span><span class="stage-difficulty hell">地狱</span>
+                <b>终焉协议</b><small>坍缩核心 · 极限弹幕</small><em>◆ 260 起</em>
+              </button>
+            </div>
+            <p id="stageBrief" class="stage-brief">建议熟悉移动与技能后挑战，敌方火力较低，适合首次出击。</p>
+          </div>
+          <div class="secondary-actions">
+            <button id="hangarBtn">战机强化</button>
+            <span></span>
+            <button id="shopBtn">补给商店</button>
+            <span></span>
+            <button id="badgeBtn">勋章墙</button>
+            <span></span>
+            <button id="helpBtn">操作指南</button>
+            <span></span>
+            <button id="rankingBtn">历史排名</button>
+          </div>
+        </div>
+
+        <div class="menu-footer">
+          <span>P1：拖动 / WASD</span>
+          <span>P2：第二指 / 方向键</span>
+          <span>自动开火 · 独立技能</span>
+        </div>
+      </section>
+
+      <section id="hud" class="hud hidden" aria-label="游戏状态">
+        <div class="hud-left glass">
+          <div class="status-row"><span class="status-label">HULL</span><b id="hpText">100</b></div>
+          <div class="bar"><i id="hpBar"></i></div>
+          <div class="status-row shield-row"><span class="status-label">SHIELD</span><b id="shieldText">0</b></div>
+          <div class="bar shield"><i id="shieldBar"></i></div>
+        </div>
+        <div id="player2Hud" class="player2-hud glass hidden" aria-label="玩家 2 状态">
+          <div class="status-row"><span class="status-label">P2 HULL</span><b id="p2HpText">100</b></div>
+          <div class="bar"><i id="p2HpBar"></i></div>
+          <div class="status-row shield-row"><span class="status-label">P2 SHIELD</span><b id="p2ShieldText">0</b></div>
+          <div class="bar shield"><i id="p2ShieldBar"></i></div>
+        </div>
+        <div class="mission-head">
+          <small id="missionLabel">SECTOR 01</small>
+          <strong id="missionTitle">外围防线</strong>
+          <div class="progress"><i id="missionProgress"></i></div>
+        </div>
+        <div class="hud-right glass">
+          <small>SCORE</small>
+          <b id="scoreText">000000</b>
+          <button id="pauseBtn" class="pause-btn" aria-label="暂停">Ⅱ</button>
+        </div>
+        <div id="combo" class="combo"><small>COMBO</small><b>x<span>0</span></b></div>
+        <div class="weapon-chip glass"><small>WEAPON</small><b id="weaponText">脉冲炮 · LV.1</b></div>
+        <div class="skill-cluster">
+          <button id="dashBtn" class="skill dash"><span>⇧</span><b>相位冲刺</b><small id="dashText">READY</small></button>
+          <button id="bombBtn" class="skill bomb"><span>◎</span><b>量子炸弹</b><small id="bombText">× 2</small></button>
+        </div>
+        <div id="p2SkillCluster" class="p2-skill-cluster hidden">
+          <button id="p2DashBtn" class="p2-skill"><span>⇧</span><b>P2 冲刺</b><small id="p2DashText">READY</small></button>
+          <button id="p2BombBtn" class="p2-skill bomb"><span>◎</span><b>P2 炸弹</b><small id="p2BombText">× 2</small></button>
+        </div>
+      </section>
+
+      <div id="bossHud" class="boss-hud hidden">
+        <div class="boss-name"><small>OMEGA CLASS TARGET</small><b id="bossName">阿特拉斯-Ω</b><span id="bossPhase">PHASE 1</span></div>
+        <div class="boss-bar"><i id="bossBar"></i><em></em><em></em></div>
+      </div>
+
+      <div id="bossProgressPanel" class="boss-progress-panel glass hidden">
+        <div><small>MISSION TARGETS</small><b>首领击破进度</b><span id="bossProgressText">0 / 3</span></div>
+        <div class="boss-progress-track"><i id="bossProgressBar"></i></div>
+        <div id="bossProgressSegments" class="boss-progress-segments"></div>
+      </div>
+
+      <div id="announcement" class="announcement hidden"><small>WARNING</small><b></b><span></span></div>
+      <div id="toast" class="toast hidden"></div>
+
+      <section id="pauseScreen" class="overlay hidden">
+        <div class="modal glass">
+          <p class="eyebrow">SYSTEM SUSPENDED</p>
+          <h2>任务暂停</h2>
+          <p>战场时间已冻结</p>
+          <button id="resumeBtn" class="primary-btn compact">继续任务</button>
+          <button id="restartBtn" class="modal-btn">重新开始</button>
+          <button id="quitBtn" class="modal-btn danger-text">撤离战场</button>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="overlay hidden">
+        <div class="modal result-modal glass">
+          <p id="resultEyebrow" class="eyebrow">MISSION COMPLETE</p>
+          <h2 id="resultTitle">任务完成</h2>
+          <div class="result-score"><small>FINAL SCORE</small><b id="finalScore">000000</b></div>
+          <div class="stats-grid">
+            <div><small>击落</small><b id="killsStat">0</b></div>
+            <div><small>最高连击</small><b id="comboStat">0</b></div>
+            <div><small>战斗时长</small><b id="timeStat">00:00</b></div>
+            <div><small>获得晶体</small><b id="coinStat">◆ 0</b></div>
+          </div>
+          <button id="againBtn" class="primary-btn compact">再次出击</button>
+          <button id="resultMenuBtn" class="modal-btn">返回主界面</button>
+        </div>
+      </section>
+
+      <section id="hangarScreen" class="overlay hidden">
+        <div class="modal hangar-modal glass">
+          <button class="close-btn" data-close="hangarScreen">×</button>
+          <p class="eyebrow">ARSENAL / HANGAR</p>
+          <h2>战机强化</h2>
+          <div class="ship-preview"><div class="mini-ship"><i></i></div></div>
+          <div class="upgrade-row"><div><b>主炮火力</b><small>提升子弹基础伤害</small></div><span>LV.<b id="damageLevel">1</b></span><button id="upgradeDamage">◆ <i>120</i></button></div>
+          <div class="upgrade-row"><div><b>装甲强度</b><small>提升战机最大生命</small></div><span>LV.<b id="armorLevel">1</b></span><button id="upgradeArmor">◆ <i>120</i></button></div>
+          <div class="hangar-money">现有晶体 <b>◆ <span id="hangarCoins">0</span></b></div>
+        </div>
+      </section>
+
+      <section id="shopScreen" class="overlay hidden">
+        <div class="modal shop-modal glass">
+          <button class="close-btn" data-close="shopScreen">×</button>
+          <p class="eyebrow">SUPPLY DEPOT / LOCAL</p>
+          <h2>补给商店</h2>
+          <p class="shop-note">用任务晶体购买永久出击补给，不改变关卡难度。</p>
+          <div id="shopList" class="shop-list"></div>
+          <div class="hangar-money">现有晶体 <b>◆ <span id="shopCoins">0</span></b></div>
+        </div>
+      </section>
+
+      <section id="badgeScreen" class="overlay hidden">
+        <div class="modal badge-modal glass">
+          <button class="close-btn" data-close="badgeScreen">×</button>
+          <p class="eyebrow">ACHIEVEMENT ARCHIVE / LOCAL</p>
+          <h2>勋章墙</h2>
+          <p class="badge-note">完成任务、击破首领和挑战高难度即可解锁。</p>
+          <div id="badgeList" class="badge-list"></div>
+        </div>
+      </section>
+
+      <section id="helpScreen" class="overlay hidden">
+        <div class="modal help-modal glass">
+          <button class="close-btn" data-close="helpScreen">×</button>
+          <p class="eyebrow">PILOT MANUAL</p>
+          <h2>作战说明</h2>
+          <div class="help-grid">
+            <div><span>01</span><b>PC 操作</b><p>玩家 1 使用 WASD（单人时也支持方向键），Shift 冲刺、空格炸弹；玩家 2 使用方向键，/ 冲刺、Enter 炸弹。P/ESC 暂停。</p></div>
+            <div><span>02</span><b>移动端操作</b><p>第一根手指拖动玩家 1；双人模式下第二根手指拖动玩家 2。两名玩家都拥有独立的屏幕技能按钮。</p></div>
+            <div><span>03</span><b>拾取强化</b><p>收集能量、护盾、修复与狂热模块，主炮最多强化至 5 级，双人共享战场掉落。</p></div>
+            <div><span>04</span><b>主动技能</b><p>相位冲刺可短暂无敌；量子炸弹清除敌弹并造成全屏伤害。双人各自拥有技能。</p></div>
+            <div><span>05</span><b>战机特性</b><p>哨兵均衡、突击者火力更强、幽灵移动更快。进入任务前可在首页切换。</p></div>
+            <div><span>06</span><b>多阶段首领</b><p>每局至少出现 3 个首领，高难度会随机增加。击破后通过首领进度条确认剩余目标。</p></div>
+            <div><span>07</span><b>隐藏敌机</b><p>累计击落一定数量敌机后会触发隐形目标，击破它必定掉落稀有强化模块。</p></div>
+            <div><span>08</span><b>稀有道具</b><p>除修复、护盾和火力外，还有移速、穿甲、生命核心、资源磁铁、炸弹与僚机支援。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="rankingScreen" class="overlay hidden">
+        <div class="modal ranking-modal glass">
+          <button class="close-btn" data-close="rankingScreen">×</button>
+          <p class="eyebrow">FLIGHT RECORDS / LOCAL</p>
+          <h2>历史排名</h2>
+          <p class="ranking-note">本机保存最近 10 次最佳战绩</p>
+          <div id="rankingList" class="ranking-list"></div>
+          <button id="clearRankingBtn" class="modal-btn danger-text">清空历史记录</button>
+        </div>
+      </section>
+    </main>
+    <script defer src="src/main.js"></script>
+  </body>
+</html>

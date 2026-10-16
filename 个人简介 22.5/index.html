@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="你好，我是李松鸿。天津农学院功能材料本科生，记录 AI 创作、网页游戏、影像作品与持续奔跑的成长。" />
+  <title>李松鸿 · 学习、创作与奔跑</title>
+  <meta name="theme-color" content="#f6f7f4" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/profile.css?v=20261015-campus-video" />
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到主要内容</a>
+  <div class="page-photo-background" aria-hidden="true"></div>
+  <header class="topbar" id="top">
+    <div class="container nav">
+      <a class="brand" href="#hero" aria-label="返回首页"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="6" r="2" fill="currentColor"/></svg></span><span id="brandName">李松鸿</span></a>
+      <nav class="nav-links" aria-label="页面导航" id="navLinks"></nav>
+      <div class="toolbar">
+        <button class="icon-btn" type="button" id="themeToggle" aria-label="切换深浅色模式" title="切换深浅色模式"></button>
+        <button class="icon-btn" type="button" id="printBtn" aria-label="打印或保存为PDF" title="打印 / 保存为PDF"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 9V4h10v5M7 18H5.5A2.5 2.5 0 0 1 3 15.5v-3A2.5 2.5 0 0 1 5.5 10h13a2.5 2.5 0 0 1 2.5 2.5v3a2.5 2.5 0 0 1-2.5 2.5H17M7 14h10v6H7z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero" aria-labelledby="heroName">
+      <div class="container">
+        <div class="hero-layout">
+          <div class="hero-copy">
+            <p class="eyebrow">HELLO, I'M SONGHONG <span> / 2026</span></p>
+            <h1>你好，我是<span id="heroName">李松鸿</span><span class="hero-period">。</span></h1>
+            <p class="hero-title">认真学习，<br />也把<strong>热爱做成作品。</strong></p>
+            <p class="hero-summary">天津农学院 · 功能材料本科生<br />探索 AI 创作与编程，在持续奔跑中积累成长。</p>
+            <div class="badges" id="heroBadges"></div>
+            <div class="actions">
+              <a class="btn btn-primary" href="#portfolio">看看我的作品 <span aria-hidden="true">↗</span></a>
+              <a class="btn btn-secondary" id="emailBtn" href="mailto:li-oct21-libra-h@qq.com">联系我 <span aria-hidden="true">↗</span></a>
+              <button class="copy-link" type="button" id="copyBtn"><span>复制邮箱</span></button>
+            </div>
+            <a class="hero-current" href="#aiPortfolioGroup"><span class="status-dot" aria-hidden="true"></span><span>最近在探索 <strong>AI 短剧创作</strong></span><span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-visual">
+            <figure class="hero-image">
+              <img src="sports-running.jpg" alt="李松鸿在校运会跑道上冲刺" width="1706" height="1279" fetchpriority="high" />
+              <figcaption><span>KEEP MOVING, KEEP EXPLORING</span><strong>每一步，都算数。</strong><small>2025 · 校园运动会</small></figcaption>
+            </figure>
+            <div class="avatar-note"><img src="2.jpg" alt="我的二次元头像" width="48" height="48" /><span>学习之外，<br /><strong>也有自己的小宇宙。</strong></span><span aria-hidden="true">✦</span></div>
+            <span class="hero-side-label" aria-hidden="true">A LITTLE ABOUT ME — ALWAYS IN PROGRESS</span>
+          </div>
+        </div>
+        <div class="hero-bottom"><a class="hero-sports-entry" href="#sports"><strong>524.41 km</strong><span>我的奔跑与体育故事</span><span aria-hidden="true">↗</span></a><a href="#highlights">向下认识我 <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container reveal">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">PORTFOLIO</p>
+            <h2>把想法，变成看得见的作品。</h2>
+          </div>
+          <p class="section-note">从网页小游戏到影像与 AI 短剧，这是我的实践记录。</p>
+        </div>
+        <div class="portfolio-filters" role="group" aria-label="筛选作品类型">
+          <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">全部作品</button>
+          <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">网页与游戏</button>
+          <button type="button" class="filter-btn" data-filter="ai" aria-pressed="false">AI 创作</button>
+          <button type="button" class="filter-btn" data-filter="video" aria-pressed="false">影像记录</button>
+          <button type="button" class="filter-btn" data-filter="awards" aria-pressed="false">荣誉证书</button>
+        </div>
+        <p class="sr-only" id="filterStatus" role="status" aria-live="polite"></p>
+        <div class="portfolio-groups">
+          <section class="portfolio-group ai-feature" id="aiPortfolioGroup" data-category="ai" aria-labelledby="aiPortfolioTitle"></section>
+          <section class="portfolio-group" data-category="web" aria-labelledby="webPortfolioTitle">
+            <div class="portfolio-group-head">
+              <div>
+                <p class="section-kicker">WEB GAME</p>
+                <h3 id="webPortfolioTitle">网页小游戏</h3>
+              </div>
+              <p>可直接体验的小游戏与网页创作记录</p>
+            </div>
+            <div class="portfolio-grid" id="gamePortfolioGrid"></div>
+          </section>
+          <section class="portfolio-group" id="videoPortfolioGroup" data-category="video" aria-labelledby="videoPortfolioTitle">
+            <div class="portfolio-group-head">
+              <div>
+                <p class="section-kicker">VIDEO WORKS</p>
+                <h3 id="videoPortfolioTitle">视频作品</h3>
+              </div>
+              <p>校园活动记录与个人短视频作品</p>
+            </div>
+            <div class="portfolio-grid video-grid" id="videoPortfolioGrid"></div>
+          </section>
+          <section class="portfolio-group" id="awardPortfolioGroup" data-category="awards" aria-labelledby="awardPortfolioTitle">
+            <div class="portfolio-group-head">
+              <div>
+                <p class="section-kicker">HONORS &amp; CERTIFICATES</p>
+                <h3 id="awardPortfolioTitle">荣誉与证书</h3>
+              </div>
+              <p>人工智能训练师证书与校园体育荣誉</p>
+            </div>
+            <div class="portfolio-grid award-accordion" id="awardPortfolioGrid"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- About: personal introduction, achievements, and running story. -->
+    <section class="section" id="highlights">
+      <div class="container reveal">
+        <div class="profile-intro">
+          <div class="profile-intro-title">
+            <p class="section-kicker">01 · ABOUT ME</p>
+            <h2>保持好奇，<br />用行动慢慢生长。</h2>
+            <p>功能材料本科生 · AI 工具学习者 · 跑步爱好者</p>
+          </div>
+          <div class="profile-intro-copy">
+            <p class="profile-lead">2026 年，我进入天津农学院学习功能材料。在专业学习之外，我用 AI 工具与 Python 探索创作和编程，把新想法一点点变成可体验的作品。</p>
+            <p>跑步教会我长期坚持，志愿服务和校园活动让我更重视协作、执行与责任。</p>
+            <div class="profile-contact-line">天津农学院 · 功能材料专业 · 2026 级</div>
+          </div>
+          <div class="highlights profile-metrics" id="highlightGrid"></div>
+        </div>
+        <button class="memory-strip" id="videoPlayToggle" type="button" aria-haspopup="dialog"><span class="memory-play" aria-hidden="true">▶</span><span><strong>我的高中时光</strong><small>50 秒活动合集 · 点击播放</small></span><span aria-hidden="true">↗</span></button>
+
+      </div>
+    </section>
+
+    <section class="section sports-section" id="sports" aria-labelledby="sports-title">
+      <div class="container">
+        <div class="section-head"><div><p class="section-kicker">SPORTS PRACTICE / 体育实践</p><h2 id="sports-title">奔跑不止，热爱不息。</h2></div><p class="section-note">三年跑步，一次次出发。记录个人的突破，也珍藏与同伴并肩的时刻。</p></div>
+        <div class="sports-opening">
+          <figure class="sports-main-photo"><img src="sports-running.jpg" alt="2025 年校运会男子 800 米赛道上的冲刺瞬间" loading="lazy" width="1706" height="1279" /><figcaption><span>2025 · 瓮安中学校运会</span><strong>每一步，都踏出坚定。</strong></figcaption></figure>
+          <div class="sports-manifesto"><p class="section-kicker">MY RUNNING STORY</p><h3>从一个人的坚持，<br />到一群人的热爱。</h3><p>操场上的一圈又一圈，让我逐渐从犹豫走向坚定。三年里，跑步改变了我的状态，也让我拥有面对新挑战的勇气。</p><p>800 米，是和自己的节奏较量；4×400 米接力，是为同一个终点共同努力。中长跑与足球，让运动成为我的校园生活中持续的一部分。</p><div class="sports-signature"><span>中长跑 · 足球 · 田径接力</span><strong>李松鸿 / SPORTS JOURNAL</strong></div></div>
+        </div>
+        <div class="sports-scoreboard" aria-label="体育记录与比赛成绩">
+          <div><span class="sports-stat-label">持续奔跑</span><strong>3 <small>年</small></strong><span>在重复中积累改变</span></div>
+          <div><span class="sports-stat-label">累计跑步记录</span><strong>524.41 <small>km</small></strong><span>把热爱留在每一步里</span></div>
+          <div><span class="sports-stat-label">男子甲组 800 米</span><strong>第 7 <small>名</small></strong><span>2025 年秋季运动会 · 个人</span></div>
+          <div><span class="sports-stat-label">男子甲组 4×400 米</span><strong>第 5 <small>名</small></strong><span>2025 年秋季运动会 · 班级团体</span></div>
+        </div>
+        <div class="sports-results" id="sports-results">
+          <article class="sports-result-card"><div class="sports-result-heading"><span>01 / INDIVIDUAL</span><strong>800 m</strong></div><h3>一个人的赛道，全力以赴。</h3><p>参加 2025 年秋季运动会男子甲组 800 米项目，获得<strong>第七名</strong>。从赛前训练到正式上场，每一次起跑、节奏调整和冲刺，都是对耐力、专注与执行力的检验。</p><div class="sports-tags"><span>个人突破</span><span>耐力与节奏</span><span>专注与抗压</span></div></article>
+          <article class="sports-result-card"><div class="sports-result-heading"><span>02 / TEAMWORK</span><strong>4 × 400 m</strong></div><h3>每一棒，都为同一个终点。</h3><p>代表班级参加男子甲组 4×400 米接力项目，获得<strong>团体第五名</strong>。个人的努力汇入班级的共同目标，成绩之外，更珍贵的是一起参赛、互相加油的集体记忆。</p><div class="sports-tags"><span>团队协作</span><span>责任与信任</span><span>班级荣誉</span></div></article>
+        </div>
+        <div class="sports-subhead"><div><p class="section-kicker">GROWTH / 看得见的改变</p><h3>改变，藏在日复一日的坚持里。</h3></div><p>照片记录状态，公里数记录脚步。</p></div>
+        <article class="running-story" aria-label="坚持跑步带来的状态变化">
+          <div class="running-compare">
+            <div class="comparison-grid">
+              <figure class="comparison-photo" style="margin:0">
+                <img src="running-before.jpg" alt="开始坚持跑步前的状态" loading="lazy" />
+                <figcaption class="photo-state">之前 · 开始跑步前</figcaption>
+              </figure>
+              <figure class="comparison-photo" style="margin:0">
+                <img src="profile-current.jpg" alt="坚持跑步后的现在状态" loading="lazy" />
+                <figcaption class="photo-state">现在 · 坚持跑步后</figcaption>
+              </figure>
+            </div>
+            <div class="running-copy">
+              <strong>跑步带来的改变</strong>
+              <p>三年里，一圈又一圈的训练，让我从犹豫走向坚定。跑步改变了我的状态，也让我学会把远处的目标，拆成脚下的每一步。</p>
+            </div>
+          </div>
+          <div class="running-record">
+            <img src="running-record.jpg" alt="累计跑步524.41公里记录" loading="lazy" />
+            <div class="running-stat"><strong>524.41 km</strong>累计跑步记录</div>
+          </div>
+        </article>
+        <div class="sports-values" aria-label="运动带来的成长"><article><span>01</span><h3>自律，是一次次出发。</h3><p>中长跑让我学会与长期目标相处：先迈出眼前的一步，再让每一次努力慢慢累积。</p></article><article><span>02</span><h3>协作，是把自己放进团队。</h3><p>接力与足球让我看到，个人表现之外，还有沟通、配合和共同承担的责任。</p></article><article><span>03</span><h3>热爱，让坚持有了温度。</h3><p>运动会上的呐喊、同学的陪伴、校园里的日常，都是继续向前的动力。</p></article></div>
+        <div class="sports-subhead" id="sports-gallery"><div><p class="section-kicker">CAMPUS MEMORIES / 运动与同伴</p><h3>赛道之外，也有值得珍藏的瞬间。</h3></div><p>点击照片，查看完整画面。</p></div>
+        <div class="sports-photo-journal">
+          <figure class="sports-photo-tall"><a href="sports-bib-800m.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看800米参赛合影大图"><img src="sports-bib-800m.jpg" alt="800米比赛期间，与同学佩戴号码布的参赛合影" loading="lazy" width="2736" height="3648" /></a><figcaption><span>01 / ON THE TRACK</span><strong>号码布背后，是一起参赛的我们。</strong><p>男子 800 米 · 参赛合影</p></figcaption></figure>
+          <figure><a href="sports-cheer-flags.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看运动会加油旗大图"><img src="sports-cheer-flags.jpg" alt="运动会期间的班级加油旗" loading="lazy" /></a><figcaption><span>02 / CHEER TOGETHER</span><strong>听见加油，就再向前一步。</strong><p>校运会 · 班级加油旗</p></figcaption></figure>
+          <figure><a href="sports-class-night.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看班级同学合影大图"><img src="sports-class-night.jpg" alt="夜晚与班级同学一起留下的合影" loading="lazy" width="4096" height="2304" /></a><figcaption><span>03 / GOOD COMPANY</span><strong>关于青春，也关于同伴。</strong><p>校园生活 · 班级同学合影</p></figcaption></figure>
+          <figure><a href="sports-campus.jpg" target="_blank" rel="noopener noreferrer" aria-label="查看校园日常大图"><img src="sports-campus.jpg" alt="课余时光中的校园日常记录" loading="lazy" /></a><figcaption><span>04 / EVERYDAY MOMENTS</span><strong>平凡的日常，也值得被记住。</strong><p>课余时光 · 校园记录</p></figcaption></figure>
+        </div>
+        <a class="sports-proof" href="sports-awards.jpg" target="_blank" rel="noopener noreferrer"><span><strong>让成绩，也留下真实的记录。</strong><small>查看 2025 年运动会个人与班级荣誉原图</small></span><span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <!-- Resume content: experience, projects, skills, and education. -->
+    <section class="section" id="experience">
+      <div class="container reveal">
+        <div class="section-head"><div><p class="section-kicker">EXPERIENCE</p><h2>经历</h2></div><p class="section-note">从志愿服务到校园实践，持续积累可靠的执行与协作能力。</p></div>
+        <div class="tabs" role="tablist" aria-label="经历分类" id="experienceTabs"></div>
+        <div id="experiencePanels"></div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container reveal">
+        <div class="section-head"><div><p class="section-kicker">PROJECTS</p><h2>项目与实践</h2></div><p class="section-note">把工具学习转化为可复用的专业能力。</p></div>
+        <div class="tabs" role="tablist" aria-label="项目分类" id="projectTabs"></div>
+        <div id="projectPanels"></div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container reveal">
+        <div class="section-head"><div><p class="section-kicker">CAPABILITIES</p><h2>正在积累的能力</h2></div><p class="section-note">当前能力标签与持续学习方向。</p></div>
+        <article class="skill-showcase" aria-labelledby="knowledge-skill-title">
+          <figure class="skill-showcase-figure">
+            <a href="assets/skills/ima-knowledge-base.png" target="_blank" rel="noopener noreferrer" aria-label="查看 ima 个人知识库展示原图">
+              <img src="assets/skills/ima-knowledge-base.png" alt="我的 ima 个人知识库：按主题整理大学学习与校园事务资料，并基于知识库进行 AI 问答" width="2940" height="1912" loading="lazy" decoding="async" />
+            </a>
+            <figcaption><span>ima 个人知识库 · 实际使用界面</span><span>查看原图 ↗</span></figcaption>
+          </figure>
+          <div class="skill-showcase-copy">
+            <p class="section-kicker">AI IN PRACTICE / 技能展示</p>
+            <h3 id="knowledge-skill-title">把零散资料，<br />整理成可用的知识。</h3>
+            <p>使用 ima 按主题搭建个人知识库，分类保存大学学习与校园事务资料，再通过知识库问答梳理要点，让 AI 工具融入日常学习。</p>
+            <ol class="knowledge-workflow">
+              <li><span>01</span><div><strong>资料归集</strong><p>集中保存文档、图片、PDF 与学习笔记。</p></div></li>
+              <li><span>02</span><div><strong>主题分类</strong><p>按学校、学习与生活等主题组织资料。</p></div></li>
+              <li><span>03</span><div><strong>辅助学习</strong><p>围绕已有资料提问，提炼要点与行动思路。</p></div></li>
+            </ol>
+            <div class="skill-tags" aria-label="展示的技能"><span class="skill-tag">ima 知识库</span><span class="skill-tag">知识管理</span><span class="skill-tag">资料整理</span><span class="skill-tag">AI 辅助学习</span></div>
+          </div>
+        </article>
+        <div class="skill-grid" id="skillGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="container reveal">
+        <div class="section-head"><div><p class="section-kicker">EDUCATION &amp; CREDENTIALS</p><h2>教育与证书</h2></div></div>
+        <div class="edu-grid" id="educationGrid"></div>
+        <div class="cert-grid" id="certGrid" style="margin-top:14px"></div>
+      </div>
+    </section>
+
+    <section class="closing-section" id="contact">
+      <div class="container reveal">
+        <div class="closing-card">
+          <div class="closing-copy">
+            <p class="section-kicker">NEXT CHAPTER</p>
+            <h2>聊聊想法，<br />也认识新的朋友。</h2>
+            <p>我正在积累功能材料、AI 工具、Python、沟通协作与持续执行的能力。跑步让我相信长期主义，而未来的每一步，我希望带着好奇、认真和行动力继续向前。</p>
+            <div id="contactList" class="contact-meta"></div>
+            <div class="personality-tags" aria-label="个人特色">
+              <span>持续学习</span><span>长期主义</span><span>认真可靠</span><span>热爱运动</span><span>主动实践</span>
+            </div>
+          </div>
+          <div class="closing-contact" aria-label="联系方式">
+            <a class="closing-primary" id="closingEmail" href="mailto:li-oct21-libra-h@qq.com"><span><strong>邮件联系</strong><small>li-oct21-libra-h@qq.com</small></span><span aria-hidden="true">↗</span></a>
+            <a href="tel:15086146398"><span><strong>电话</strong><small>15086146398</small></span><span aria-hidden="true">↗</span></a>
+            <button type="button" data-copy-contact="wechat"><span><strong>微信</strong><small>Li-Oct21-libra-h · 点击复制</small></span><span aria-hidden="true">复制</span></button>
+            <button type="button" data-copy-contact="qq"><span><strong>QQ</strong><small>2806902239 · 点击复制</small></span><span aria-hidden="true">复制</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner"><span>© <span id="footerName">李松鸿</span> · 学习、创作与奔跑</span><span>最后更新：2026年10月15日</span></div>
+  </footer>
+  <audio id="bgMusic" loop preload="none">
+    <source src="background-music.mp3" type="audio/mpeg" />
+  </audio>
+  <div class="video-modal" id="videoModal" hidden inert role="dialog" aria-modal="true" aria-label="放大播放高中活动视频" aria-hidden="true">
+    <div class="video-modal-panel">
+      <button class="video-modal-close" id="videoModalClose" type="button" aria-label="关闭视频">×</button>
+      <video id="videoModalPlayer" playsinline controls preload="none" aria-label="高中活动合集放大视频">
+        <source src="intro-video.mp4" type="video/mp4" />
+      </video>
+      <p class="video-modal-hint">高中活动合集 · 按 Esc 或点击右上角关闭</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button class="music-player" id="musicToggle" type="button" aria-label="播放背景音乐" aria-pressed="false">
+    <span class="music-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M9 18V7l10-2v11M9 18a3 3 0 1 1-3-3c1.7 0 3 1.3 3 3Zm10-2a3 3 0 1 1-3-3c1.7 0 3 1.3 3 3Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="music-copy"><strong id="musicLabel">播放背景音乐</strong><small id="musicStatus">点击控制播放</small></span>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <button class="top-btn" id="backTop" type="button" aria-label="返回顶部"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+  <script src="assets/profile.js?v=20261015-campus-video" defer></script>
+</body>
+</html>

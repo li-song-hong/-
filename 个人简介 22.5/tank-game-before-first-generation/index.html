@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050a12">
+  <title>坦克大战 · LSH 原创地图</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <strong>TANK BATTLE</strong>
+          <span>LSH ORIGINAL MAP // WEB EDITION</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="soundButton" class="icon-button" type="button" aria-label="切换音效">音效 ON</button>
+        <button id="pauseButton" class="icon-button" type="button" aria-label="暂停游戏">暂停 P</button>
+      </div>
+    </header>
+
+    <section class="hud" aria-label="游戏状态">
+      <div class="hud-block health-block">
+        <div class="hud-label"><span>装甲值</span><b id="healthText">100 / 100</b></div>
+        <div class="meter"><i id="healthBar"></i></div>
+      </div>
+      <div id="playerTwoHud" class="hud-block health-block player-two-health" aria-label="二号坦克装甲值">
+        <div class="hud-label"><span>二号装甲</span><b id="health2Text">待机</b></div>
+        <div class="meter amber"><i id="health2Bar"></i></div>
+      </div>
+      <div class="hud-stat"><span>战术积分</span><b id="scoreText">000000</b></div>
+      <div class="hud-stat"><span>作战阶段</span><b id="levelText">01</b></div>
+      <div class="hud-stat"><span>剩余目标</span><b id="enemyText">00</b></div>
+      <div class="hud-block weapon-block">
+        <div class="hud-label"><span id="weaponText">脉冲炮 · I</span><b id="cooldownText">READY</b></div>
+        <div class="meter cyan"><i id="cooldownBar"></i></div>
+      </div>
+    </section>
+
+    <section class="battlefield-wrap">
+      <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      <canvas id="gameCanvas" width="960" height="640" aria-label="坦克大战游戏区域"></canvas>
+      <div id="bossHud" class="boss-hud hidden">
+        <div><span>WARNING · TITAN UNIT</span><b id="bossHealthText">100%</b></div>
+        <div class="boss-meter"><i id="bossHealthBar"></i></div>
+      </div>
+      <div id="toast" class="toast" aria-live="polite"></div>
+
+      <div id="menuScreen" class="overlay active">
+        <div class="menu-card">
+          <div class="eyebrow">浪尖儿大学社区 // LSH 原创地图</div>
+          <h1>坦克<br><span>大战</span></h1>
+          <p>以浪尖儿大学社区为战场底图，中央障碍物采用 LSH 字母布局。突破封锁并守住基地，双人协作可互相救援。</p>
+          <div class="difficulty-row" aria-label="选择难度">
+            <button type="button" data-difficulty="rookie">新兵</button>
+            <button type="button" data-difficulty="normal" class="selected">战士</button>
+            <button type="button" data-difficulty="ace">王牌</button>
+          </div>
+          <div class="mode-row" aria-label="选择作战模式">
+            <button type="button" data-mode="solo" class="selected">单人战役</button>
+            <button type="button" data-mode="coop">双人协作</button>
+          </div>
+          <button id="startButton" class="primary-button" type="button"><span>开始作战</span><i>ENTER</i></button>
+          <button id="helpButton" class="text-button" type="button">查看操作与作战资料</button>
+        </div>
+        <div class="menu-side">
+          <span class="signal">SYSTEM ONLINE</span>
+          <div class="tank-emblem" aria-hidden="true"><i></i></div>
+          <div class="menu-tips"><b>原创标识</b><span>LSH 签名地图<br>清除所有敌方单位</span></div>
+        </div>
+      </div>
+
+      <div id="pauseScreen" class="overlay compact">
+        <div class="dialog-card">
+          <div class="eyebrow">TACTICAL LINK PAUSED</div>
+          <h2>作战暂停</h2>
+          <button id="resumeButton" class="primary-button" type="button"><span>继续游戏</span><i>P</i></button>
+          <button id="restartPauseButton" class="secondary-button" type="button">重新开始</button>
+          <button id="menuPauseButton" class="text-button" type="button">返回主菜单</button>
+        </div>
+      </div>
+
+      <div id="resultScreen" class="overlay compact">
+        <div class="dialog-card result-card">
+          <div id="resultEyebrow" class="eyebrow">MISSION COMPLETE</div>
+          <h2 id="resultTitle">区域已净化</h2>
+          <p id="resultMessage">泰坦核心已经失去响应。</p>
+          <div class="result-stats">
+            <div><span>最终得分</span><b id="resultScore">0</b></div>
+            <div><span>击毁目标</span><b id="resultKills">0</b></div>
+            <div><span>最高连击</span><b id="resultCombo">0</b></div>
+          </div>
+          <button id="nextButton" class="primary-button" type="button"><span>进入下一阶段</span><i>ENTER</i></button>
+          <button id="restartResultButton" class="secondary-button" type="button">重新挑战</button>
+          <button id="menuResultButton" class="text-button" type="button">返回主菜单</button>
+        </div>
+      </div>
+
+      <div id="helpScreen" class="overlay compact">
+        <div class="dialog-card help-card">
+          <button id="closeHelpButton" class="close-button" type="button" aria-label="关闭">×</button>
+          <div class="eyebrow">FIELD MANUAL // 01</div>
+          <h2>作战资料</h2>
+          <div class="help-grid">
+            <div><b>P1：WASD</b><span>移动并改变炮口方向</span></div>
+            <div><b>P1：空格 / J / 左键</b><span>发射脉冲炮，可按住连射</span></div>
+            <div><b>双人：方向键 + 小键盘 0</b><span>二号坦克移动与射击；也可按 ENTER 开火</span></div>
+            <div><b>救援机制</b><span>队友倒地后靠近 5 秒即可复活</span></div>
+            <div><b>协同阵型</b><span>两车距离足够近时，射速提升 18%</span></div>
+            <div><b>P / ESC</b><span>暂停或继续游戏</span></div>
+            <div><b>强化模块</b><span>获取散射、护盾、治疗与超频</span></div>
+          </div>
+          <p>钢墙无法摧毁，砖墙会被炮弹击穿。保护底部的量子核心；第三阶段将遭遇泰坦 Boss。</p>
+        </div>
+      </div>
+
+      <div id="touchControls" class="touch-controls" aria-label="触屏控制">
+        <div class="dpad">
+          <button data-key="ArrowUp" aria-label="向上">▲</button>
+          <button data-key="ArrowLeft" aria-label="向左">◀</button>
+          <button data-key="ArrowDown" aria-label="向下">▼</button>
+          <button data-key="ArrowRight" aria-label="向右">▶</button>
+        </div>
+        <button class="fire-button" data-key="Space" aria-label="开火"><span>FIRE</span></button>
+      </div>
+    </section>
+
+    <footer class="statusbar">
+      <span><i class="status-dot"></i> CAMPUS BACKDROP ONLINE</span>
+      <span class="signature-stamp">原创地图签名：LSH</span>
+      <span id="powerText">模块：标准配置</span>
+      <span class="desktop-hint">P1 WASD/SPACE · P2 方向键/ENTER · P 暂停</span>
+    </footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
